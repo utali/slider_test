@@ -1,0 +1,55 @@
+.yan {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto 0;
+}
+#yan_img {
+    display: none;
+}
+.yan_drag {
+    margin-top: 30px;
+    border-radius: 4px;
+    height: 50px;
+    width: 800px;
+    box-sizing: border-box;
+    line-height: 50px;
+    text-align: center;
+    background-color: #dddddd;
+    position: relative;
+}
+.yan_drag_btn {
+    width: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.yan_ceng {
+    display: none;
+    position: relative;
+}
+#yan_ceng {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.exm {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    bottom: 5px;
+    left: 0;
+    background-color: transparent;
+    color: transparent;
+    transition: all 0.5s linear;
+}
+.moved {
+    position: absolute;
+    height: 100%;
+    background-color: #7ac23c;
+    border-radius: 4px;
+    width: 0;
+    color: #ffffff;
+}

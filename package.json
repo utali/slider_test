@@ -1,0 +1,27 @@
+{
+  "name": "schedule",
+  "version": "1.0.0",
+  "description": "startNode",
+  "main": "schedule.js",
+  "dependencies": {
+    "@antv/g2": "^3.0.5",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "memory-cache": "^0.2.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utali/cici.git"
+  },
+  "keywords": [
+    "schedule"
+  ],
+  "author": "liqq",
+  "license": "ISC"
+}

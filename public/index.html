@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>拼图滑块验证码</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+<div class="yan">
+    <img src="img/bc01.jpg" id="yan_img">
+    <div class="yan_ceng">
+        <div class="exm">拖动滑块将悬浮图像正确拼合</div>
+        <canvas id="yan_ceng" width="800" height="500"></canvas>
+        <canvas id="yan_img2" width="800" height="500"></canvas>
+    </div>
+    <!--<canvas id="yanCanvas" width="800" height="500"></canvas>-->
+    <div class="yan_drag">
+        <div class="moved"></div>
+        <button class="yan_drag_btn">|||</button>
+        <div class="yan_drag_text">拖动滑块进行验证</div>
+    </div>
+</div>
+</body>
+</html>
