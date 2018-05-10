@@ -7,7 +7,7 @@ $(document).ready(function() {
         async : false
     });
     //随机生成拼图块
-    function strockArc(ctx,mX,n){//圆心(x,y)，半径radius
+    function strockArc(ctx,mX,n){//圆心(x,y)，半径r
         var number = Math.floor(Math.random()*9)%9;
         if ( n>=0 ) number = n;
         switch (number) {
@@ -20,7 +20,6 @@ $(document).ready(function() {
                 ctx.arc(mX+s/2,cY+s,r,2*Math.PI,Math.PI,true);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
             case 1:
                 //上凸右凹
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -30,17 +29,15 @@ $(document).ready(function() {
                 ctx.lineTo(mX+s,cY+s);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
             case 2 :
                 //上凸左凹
-                ctx.arc(mX+s/2,cY,25,Math.PI,2*Math.PI);
+                ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
                 ctx.lineTo(mX+s,cY);
                 ctx.lineTo(mX+s,cY+s);
                 ctx.lineTo(mX,cY+s);
                 ctx.lineTo(mX,cY+s/2+r);
-                ctx.arc(mX,cY+s/2,25,0.5*Math.PI,1.5*Math.PI,true);
+                ctx.arc(mX,cY+s/2,r,0.5*Math.PI,1.5*Math.PI,true);
                 return number;
-                break;
             case 3 :
                 //上凸下凸
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -50,7 +47,6 @@ $(document).ready(function() {
                 ctx.arc(mX+s/2,cY+s,r,0,Math.PI);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
             case 4 :
                 //上凸右凸
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -60,17 +56,6 @@ $(document).ready(function() {
                 ctx.lineTo(mX+s,cY+s);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
-//                case 5 :
-//                    //上凸左凸
-//                    ctx.arc(mX+s/2,cY,25,Math.PI,2*Math.PI);
-//                    ctx.lineTo(mX+s,cY);
-//                    ctx.lineTo(mX+s,cY+s);
-//                    ctx.lineTo(mX,cY+s);
-//                    ctx.lineTo(mX,cY+s/2+r);
-//                    ctx.arc(mX,cY+s/2,25,0.5*Math.PI,1.5*Math.PI);
-//                    return number;
-//                    break;
             case 5 :
                 //上凸右凸下凹
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -82,7 +67,6 @@ $(document).ready(function() {
                 ctx.arc(mX+s/2,cY+s,r,2*Math.PI,Math.PI,true);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
             case 6 :
                 //上凸右凸左凹
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -92,9 +76,8 @@ $(document).ready(function() {
                 ctx.lineTo(mX+s,cY+s);
                 ctx.lineTo(mX,cY+s);
                 ctx.lineTo(mX,cY+s/2+r);
-                ctx.arc(mX,cY+s/2,25,0.5*Math.PI,1.5*Math.PI,true);
+                ctx.arc(mX,cY+s/2,r,0.5*Math.PI,1.5*Math.PI,true);
                 return number;
-                break;
             case 7 :
                 //上凸下凸右凹
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -106,7 +89,6 @@ $(document).ready(function() {
                 ctx.arc(mX+s/2,cY+s,r,0,Math.PI);
                 ctx.lineTo(mX,cY+s);
                 return number;
-                break;
             case 8 :
                 //上凸左凹右凹
                 ctx.arc(mX+s/2,cY,r,Math.PI,2*Math.PI);
@@ -116,14 +98,14 @@ $(document).ready(function() {
                 ctx.lineTo(mX+s,cY+s);
                 ctx.lineTo(mX,cY+s);
                 ctx.lineTo(mX,cY+s/2+r);
-                ctx.arc(mX,cY+s/2,25,0.5*Math.PI,1.5*Math.PI,true);
+                ctx.arc(mX,cY+s/2,r,0.5*Math.PI,1.5*Math.PI,true);
                 return number;
-                break;
         }
     }
 
     //拼图随机生成位置
-    var r = 25,s=150;
+    var r = 10,s=50;
+    var qX= 400, qY = 250;
     var n, resultData;
     var cX, cY;
     var imgData;
@@ -144,8 +126,8 @@ $(document).ready(function() {
     var isDrag = false;
 
     //显示拼图块
-    ctx_img.clearRect(0,0,800,500);
-    ctx_ceng.clearRect(0,0,800,500);
+    ctx_img.clearRect(0,0,qX,qY);
+    ctx_ceng.clearRect(0,0,qX,qY);
 
     $('.yan_ceng').css('display', 'block');
 
@@ -159,7 +141,7 @@ $(document).ready(function() {
     btn.on('mousedown', function (e) {
         if (isMatch) return;
         dX = e.pageX;
-        dX1 = e.pageX + 650;
+        dX1 = e.pageX + qX - s;
         btn.html('<->');
         isDrag = true;
     });
@@ -177,7 +159,7 @@ $(document).ready(function() {
             }
             btn.css('left', mX);
             $('.moved').css('width', mX);
-            ctx_ceng.clearRect(0,0,800,500);
+            ctx_ceng.clearRect(0,0,qX,qY);
             ctx_ceng.lineWidth = 2;
             ctx_ceng.strokeStyle = '#ffffff';
 
@@ -234,7 +216,7 @@ $(document).ready(function() {
         btn.css('left',0);
         $('.moved').css('width',0);
 
-        ctx_img.clearRect(0,0,800,500);
+        ctx_img.clearRect(0,0,qX,qY);
         //获取x,y轴坐标及背景图src
         $.get('data',function (result) {
             resultData = result;
@@ -243,7 +225,7 @@ $(document).ready(function() {
             img.src = `img/${result.imgSrc}`;
         });
         img.onload = function () {
-            ctx_img.drawImage(img, 0,0,800,500);
+            ctx_img.drawImage(img, 0,0,qX,qY);
             setTimeout(function () {
                 //背景图
                 // ctx_img.globalCompositeOperation="destination-over";
@@ -261,14 +243,14 @@ $(document).ready(function() {
                 ctx_img.clip();
                 imgData = ctx_img.getImageData(cX,cY-r,s+r+1,s+2*r+1);
                 ctx_img.fillStyle = 'rgba(255,255,255,0.5)';
-                ctx_img.fillRect(0,0,800,500);
+                ctx_img.fillRect(0,0,qX,qY);
 
                 ctx_img.restore();
                 ctx_img.fillStyle = 'rgba(255,255,255,0.0)';
-                ctx_img.fillRect(0,0,800,500);
+                ctx_img.fillRect(0,0,qX,qY);
 
                 //左方拼图块
-                ctx_ceng.clearRect(0,0,800,500);
+                ctx_ceng.clearRect(0,0,qX,qY);
                 ctx_ceng.lineWidth = 2;
                 ctx_ceng.strokeStyle = '#ffffff';
 
